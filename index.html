@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <!-- ========================================================
+         CONFIGURAÇÕES DO DOCUMENTO
+         ======================================================== -->
+
+    <!-- Codificação de caracteres -->
+    <meta charset="UTF-8">
+
+    <!-- Configuração de responsividade -->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <!-- Título da aplicação -->
+    <title>Filtro Cyberpunk | Pixels em Tempo Real</title>
+
+    <!-- Folha de estilos principal -->
+    <link
+        rel="stylesheet"
+        href="./css/style.css"
+    >
+
+</head>
+
+<body>
+
+    <!-- ========================================================
+         ESTRUTURA PRINCIPAL DA APLICAÇÃO
+         ======================================================== -->
+
+    <main class="app-container">
+
+
+        <!-- ====================================================
+             CABEÇALHO DA APLICAÇÃO
+             ==================================================== -->
+
+        <header class="app-header">
+
+            <h1>FILTRO CYBERPUNK</h1>
+
+            <p>Pixels em Tempo Real</p>
+
+        </header>
+
+
+        <!-- ====================================================
+             ÁREA DE VISUALIZAÇÃO DA WEBCAM
+             ==================================================== -->
+
+        <section
+            class="camera-section"
+            aria-label="Visualização da webcam"
+        >
+
+            <div class="camera-frame">
+
+                <!--
+                    Elemento responsável por receber
+                    o fluxo de vídeo da webcam.
+
+                    O vídeo permanece oculto porque
+                    os frames serão apresentados
+                    diretamente no Canvas.
+                -->
+                <video
+                    id="camera-video"
+                    autoplay
+                    muted
+                    playsinline
+                    hidden
+                ></video>
+
+
+                <!--
+                    Canvas responsável pela apresentação
+                    e pelo processamento dos frames.
+
+                    Resolução inicial:
+                    640 x 480 pixels.
+
+                    Cada frame poderá ser transformado
+                    matematicamente pelo filtro Cyberpunk.
+                -->
+                <canvas
+                    id="camera-canvas"
+                    width="640"
+                    height="480"
+                    role="img"
+                    aria-label="Imagem da webcam com filtro Cyberpunk"
+                ></canvas>
+
+            </div>
+
+
+            <!--
+                Mensagem que apresenta o estado
+                atual da câmera e da aplicação.
+
+                aria-live permite anunciar alterações
+                de estado às tecnologias assistivas.
+            -->
+            <p
+                id="camera-status"
+                role="status"
+                aria-live="polite"
+            >
+                Câmera não iniciada.
+            </p>
+
+        </section>
+
+
+        <!-- ====================================================
+             CONTROLES DA WEBCAM
+             ==================================================== -->
+
+        <section
+            class="controls-section"
+            aria-label="Controles da câmera"
+        >
+
+            <!--
+                Inicializa a webcam por meio
+                do módulo Camera.js.
+            -->
+            <button
+                id="start-camera"
+                type="button"
+            >
+                Iniciar Câmera
+            </button>
+
+
+            <!--
+                Interrompe a webcam e o
+                loop de renderização.
+
+                Permanece desabilitado até
+                que a câmera seja iniciada.
+            -->
+            <button
+                id="stop-camera"
+                type="button"
+                disabled
+            >
+                Parar Câmera
+            </button>
+
+
+            <!--
+                Captura o frame processado
+                atualmente exibido no Canvas.
+
+                O módulo ImageCapture.js
+                será responsável pela exportação PNG.
+            -->
+            <button
+                id="capture-image"
+                type="button"
+                disabled
+            >
+                Capturar Imagem
+            </button>
+
+        </section>
+
+
+        <!-- ====================================================
+             CONTROLE DE INTENSIDADE CYBERPUNK
+             ==================================================== -->
+
+        <section
+            class="filter-section"
+            aria-label="Configurações do filtro Cyberpunk"
+        >
+
+            <!--
+                Identificação do controle deslizante.
+
+                O elemento span apresenta o percentual
+                de intensidade selecionado.
+            -->
+            <label for="filter-intensity">
+
+                Intensidade Cyberpunk:
+
+                <span id="intensity-value">
+                    100%
+                </span>
+
+            </label>
+
+
+            <!--
+                Controle de intensidade do filtro.
+
+                Intervalo:
+                0   = imagem original
+                100 = efeito Cyberpunk completo
+
+                O módulo App.js converterá o valor
+                percentual para o intervalo [0, 1].
+            -->
+            <input
+                type="range"
+                id="filter-intensity"
+                name="filter-intensity"
+                min="0"
+                max="100"
+                value="100"
+                step="1"
+                disabled
+            >
+
+        </section>
+
+
+        <!-- ====================================================
+             RODAPÉ DA APLICAÇÃO
+             ==================================================== -->
+
+        <footer class="app-footer">
+
+            <p>
+                HTML5 | CSS3 | JavaScript | Canvas API
+            </p>
+
+        </footer>
+
+    </main>
+
+
+    <!-- ========================================================
+         PONTO DE ENTRADA JAVASCRIPT
+         ======================================================== -->
+
+    <!--
+        main.js inicializa a classe App.
+
+        A classe App coordena os módulos:
+
+        - Camera.js
+        - Renderer.js
+        - Cyberpunk.js
+        - ImageCapture.js
+
+        PixelMath.js fornece operações matemáticas
+        utilizadas pelo filtro Cyberpunk.
+    -->
+    <script
+        type="module"
+        src="./js/main.js"
+    ></script>
+
+</body>
+
+</html>

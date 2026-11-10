@@ -1,0 +1,230 @@
+
+/* ============================================================
+   CONFIGURAÇÕES GLOBAIS
+   ============================================================ */
+
+:root {
+    --background: #090914;
+    --surface: #141426;
+
+    --neon-pink: #ff00cc;
+    --neon-blue: #00e5ff;
+
+    --text-primary: #ffffff;
+    --text-secondary: #a5a5bc;
+}
+
+/* Normalização básica */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: var(--background);
+    color: var(--text-primary);
+}
+
+/* ============================================================
+   CONTAINER PRINCIPAL
+   ============================================================ */
+
+.app-container {
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 28px;
+    padding: 24px;
+}
+
+/* ============================================================
+   CABEÇALHO
+   ============================================================ */
+
+.app-header {
+    text-align: center;
+}
+
+.app-header h1 {
+    color: var(--neon-pink);
+
+    font-size: clamp(24px, 5vw, 38px);
+    letter-spacing: 3px;
+
+    text-shadow: 0 0 18px var(--neon-pink);
+}
+
+.app-header p {
+    margin-top: 10px;
+
+    color: var(--neon-blue);
+    letter-spacing: 2px;
+}
+
+/* ============================================================
+   VISUALIZAÇÃO DA CÂMERA
+   ============================================================ */
+
+.camera-section {
+    width: 100%;
+    max-width: 640px;
+
+    text-align: center;
+}
+
+.camera-frame {
+    width: 100%;
+
+    border: 2px solid var(--neon-blue);
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    background: #000000;
+
+    box-shadow:
+        0 0 15px rgba(0, 229, 255, 0.35),
+        0 0 30px rgba(255, 0, 204, 0.15);
+}
+
+#camera-canvas {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+}
+
+#camera-status {
+    margin-top: 14px;
+
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+/* ============================================================
+   CONTROLES
+   ============================================================ */
+
+.controls-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 12px;
+}
+
+.controls-section button {
+    padding: 12px 20px;
+
+    border: 1px solid var(--neon-pink);
+    border-radius: 6px;
+
+    background: var(--surface);
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.controls-section button:hover:not(:disabled) {
+    background: var(--neon-pink);
+
+    box-shadow:
+        0 0 14px rgba(255, 0, 204, 0.6);
+}
+
+.controls-section button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* ============================================================
+   RODAPÉ
+   ============================================================ */
+
+.app-footer {
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    text-align: center;
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+   ============================================================ */
+
+@media (max-width: 600px) {
+    .app-container {
+        gap: 20px;
+        padding: 16px;
+    }
+
+    .controls-section {
+        width: 100%;
+    }
+
+    .controls-section button {
+        flex: 1 1 140px;
+    }
+}
+
+
+/* ============================================================
+   CONTROLE DE INTENSIDADE CYBERPUNK
+   ============================================================ */
+
+.filter-section {
+    width: 100%;
+    max-width: 420px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 14px;
+}
+
+.filter-section label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    color: var(--neon-blue);
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#intensity-value {
+    color: var(--neon-pink);
+}
+
+#filter-intensity {
+    width: 100%;
+
+    accent-color: var(--neon-pink);
+
+    cursor: pointer;
+}
+
+#filter-intensity:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
